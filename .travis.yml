@@ -6,20 +6,17 @@ serviecs:
     - docker
 
 before_install:
-    # front의 개발버전을 빌드해서 test를 한다
     - docker build -t sunwoo005/react-test-app -f ./frontend/Dockerfile.dev ./frontend
 script:
-    # test실행 script
     - docker run -e CI=true sunwoo005/react-test-app npm run test
 
 after_success:
-    # 여기선 운영버전의 빌드
     - docker build -t sunwoo005/docker-frontend ./frontend
     - docker build -t sunwoo005/docker-backend ./backend
     - docker build -t sunwoo005/docker-nginx ./nginx
-    # 도커 허브 로그인
+
     - echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_HUB_ID" --password-stdin
-    # 도커 허브 업로드
+
     - docker push sunwoo005/docker-frontend
     - docker push sunwoo005/docker-backend
     - docker push sunwoo005/docker-nginx
