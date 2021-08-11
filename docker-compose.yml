@@ -1,6 +1,8 @@
-version: "3"
+version: "2.4"
 services:
     frontend:
+				image: sunwoo005/docker-frontend (도커허브에 저장된 이미지)
+				mem_limit: 128m
         build:
             dockerfile: Dockerfile.dev
             context: ./frontend
@@ -10,14 +12,21 @@ services:
         stdin_open: true
 
     nginx:
+				image: sunwoo005/docker-nginx
+				mem_limit: 128m
+				links:
+					- frontend
+					- backend
         restart: always
         build:
             dockerfile: Dockerfile
             context: ./nginx
         ports:
-            - "3000:80"
+            - "80:80"
 
     backend:
+				image: sunwoo005/docker-backend
+				mem_limit: 128m
         build:
             dockerfile: Dockerfile.dev
             context: ./backend
@@ -26,7 +35,7 @@ services:
             - /app/node_modules
             - ./backend:/app
         environment:
-            MYSQL_HOST: mysql
+            MYSQL_HOST: docker-fullstack-mysql.c0cmj4nqvb4o.ap-northeast-2.rds.amazonaws.com
             MYSQL_USER: root
             MYSQL_ROOT_PASSWORD: sunwoo005
             MYSQL_DATABASE: myapp
