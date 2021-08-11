@@ -1,9 +1,9 @@
+// 필요한 모듈들을 가져온다
 const express = require("express");
 
 const db = require("./db");
 
 const app = express();
-
 app.use(express.json());
 
 db.pool.query(
@@ -18,7 +18,7 @@ db.pool.query(
 	}
 );
 
-
+app.get("/api/values", function (req, res) {
 	console.log(`req:${req}`);
 	db.pool.query("SELECT * FROM lists;", (err, results, fileds) => {
 		console.log(`err:${err}`);
@@ -28,6 +28,7 @@ db.pool.query(
 		else return res.json(results);
 	});
 });
+
 app.post("/api/value", function (req, res) {
 	db.pool.query(
 		`INSERT INTO lists (value) VALUES("${req.body.value}");`,
