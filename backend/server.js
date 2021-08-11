@@ -51,5 +51,5 @@ app.post("/api/value", function (req, res) {
 
 // Express 서버 포트 5050번 시작
 app.listen(5000, () => {
-	console.log("어플리케이션이 서버 500번 포트에서 연결되었습니다.");
+	console.log("server listening 5000....");
 });
