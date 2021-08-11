@@ -1,8 +1,8 @@
 version: "2.4"
 services:
     frontend:
-				image: sunwoo005/docker-frontend (도커허브에 저장된 이미지)
-				mem_limit: 128m
+				# image: sunwoo005/docker-frontend (도커허브에 저장된 이미지)
+				# mem_limit: 128m
         build:
             dockerfile: Dockerfile.dev
             context: ./frontend
@@ -12,8 +12,8 @@ services:
         stdin_open: true
 
     nginx:
-				image: sunwoo005/docker-nginx
-				mem_limit: 128m
+				# image: sunwoo005/docker-nginx
+				# mem_limit: 128m
 				links:
 					- frontend
 					- backend
@@ -22,11 +22,11 @@ services:
             dockerfile: Dockerfile
             context: ./nginx
         ports:
-            - "80:80"
+            - "3000:80"
 
     backend:
-				image: sunwoo005/docker-backend
-				mem_limit: 128m
+				# image: sunwoo005/docker-backend
+				# mem_limit: 128m
         build:
             dockerfile: Dockerfile.dev
             context: ./backend
