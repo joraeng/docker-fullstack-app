@@ -13,17 +13,17 @@ db.pool.query(
     PRIMARY KEY (id)
     )`,
 	(err, results, fields) => {
-		console.log(`err:${err}`);
-		console.log(`results`, results);
+		console.log(`create table err:${err}`);
+		console.log(`create table results`, results);
 	}
 );
 
 app.get("/api/values", function (req, res) {
-	console.log(`req:${req}`);
+	console.log(`call lists req:${req}`);
 	db.pool.query("SELECT * FROM lists;", (err, results, fileds) => {
-		console.log(`err:${err}`);
-		console.log(`result:${results}`);
-		console.log(`fileds:${fileds}`);
+		console.log(`call lists err:${err}`);
+		console.log(`call lists result:${results}`);
+		console.log(`call lists fileds:${fileds}`);
 		if (err) return res.status(500).send(err);
 		else return res.json(results);
 	});
