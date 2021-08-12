@@ -20,7 +20,7 @@
 			"image": "sunwoo005/docker-nginx",
 			"hostname": "nginx",
 			"essential": true,
-			"portsMappings": [
+			"portMappings": [
 				{
 					"hostPort": 80,
 					"containerPort": 80
