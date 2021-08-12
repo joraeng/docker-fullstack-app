@@ -1,4 +1,4 @@
-version: "2.4"
+version: "3"
 services:
     frontend:
 				# image: sunwoo005/docker-frontend (도커허브에 저장된 이미지)
@@ -35,7 +35,7 @@ services:
             - /app/node_modules
             - ./backend:/app
         environment:
-            MYSQL_HOST: docker-fullstack-mysql.c0cmj4nqvb4o.ap-northeast-2.rds.amazonaws.com
+            MYSQL_HOST: mysql
             MYSQL_USER: root
             MYSQL_ROOT_PASSWORD: sunwoo005
             MYSQL_DATABASE: myapp
